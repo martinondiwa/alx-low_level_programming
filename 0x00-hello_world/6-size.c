@@ -1,3 +1,7 @@
+/*
+ * File: 6-size.c
+ * Auth: Martin Sure
+ */
 #include <stdio.h>
 
 /**
@@ -5,11 +9,11 @@
  *
  * Return: Always 0 (Success)
  */
-int main (void)
+int main(void)
 {
-	int h ;
+	int h;
 	long int p;
-	long int t ;
+	long int t;
 	char d;
 	float f;
 
