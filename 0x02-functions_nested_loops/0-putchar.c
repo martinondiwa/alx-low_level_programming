@@ -1,11 +1,11 @@
-#include <stdio.h>
-#include "main.h"
+#include <unistd.h>
 
 /**
  * _putchar - writes a character to the standard output
- * @c: the character to print
+ * @c: the character to be written
  *
- * Return: On success, 1. On error, -1.
+ * Return: On success, returns the character written.
+ * On error, returns -1 and sets errno appropriately.
  */
 int _putchar(char c)
 {
@@ -13,7 +13,7 @@ int _putchar(char c)
 }
 
 /**
- * main - Entry point of the program
+ * main - entry point of the program
  *
  * Return: Always 0 (Success)
  */
@@ -31,4 +31,3 @@ int main(void)
 
 	return (0);
 }
-
