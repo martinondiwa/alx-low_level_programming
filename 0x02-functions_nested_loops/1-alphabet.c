@@ -1,7 +1,11 @@
 #include "main.h"
 
 /**
- * print_alphabet - Prints the alphabet in lowercase followed by a new line
+ * main - check the code
+ *
+ * Return: Always 0.
+ *
+ * print_alphabet: prints alphabet 'a' to 'z' using the _putchar function.
  */
 void print_alphabet(void)
 {
