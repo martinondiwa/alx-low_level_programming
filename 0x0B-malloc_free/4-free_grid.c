@@ -1,13 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
-#include <unistd.h>
 
 /**
-* _putchar - Writes a character to the standard output
-* @c: The character to be printed
+* free_grid - Frees a 2D array
+* @grid: The 2D grid to be freed
+* @height: The height dimension of the grid
 *
-* Return: On success, 1. On error, -1 is returned.
+* Description: Frees the memory allocated for the grid
+* Return: Nothing
 */
-int _putchar(char c)
+void free_grid(int **grid, int height)
 {
-return (write(1, &c, 1));
+int i;
+
+for (i = 0; i < height; i++)
+{
+free(grid[i]);
 }
+free(grid);
+}
+
+
