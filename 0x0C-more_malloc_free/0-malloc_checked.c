@@ -1,17 +1,20 @@
-#include "main.h"
+#include "notrebloh.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
 
 /**
-* malloc_checked - Allocates memory and terminates if allocation fails
-* @b: Size of memory to allocate
+* malloc_checked - Allocates memory using malloc
+* @b: Size of memory to allocate (unsigned int)
 *
 * Return: Pointer to the allocated memory
 */
 void *malloc_checked(unsigned int b)
 {
-void *i;
+int *ptr;
 
-i = malloc(b);
-if (i == NULL)
+ptr = malloc(b);
+if (ptr == NULL)
 exit(98);
-return (i);
+return (ptr);
 }
