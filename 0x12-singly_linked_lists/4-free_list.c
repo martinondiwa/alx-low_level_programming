@@ -1,19 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
 
 /**
- * free_list - Releases the memory allocated for a linked list.
- * @head: Pointer to the head of the linked list.
+ * free_list - Frees the memory allocated for a linked list.
  *
- * Return: No return value.
+ * @head: A pointer to the first node of the list to be freed.
  */
 void free_list(list_t *head)
 {
-	list_t *current;
-
-	while ((current = head) != NULL)
+	if (head)
 	{
-		head = head->next;
-		free(current->str);
-		free(current);
+		free_list(head->next);
+
+		if (head->str)
+			free(head->str);
+
+		free(head);
 	}
 }
