@@ -1,44 +1,30 @@
-#include "lists.h"
 #include <stdlib.h>
 #include <string.h>
-
-char *my_strdup(const char *s)
-{
-	size_t len = strlen(s) + 1;
-	char *dup = malloc(len);
-
-	if (dup != NULL)
-	{
-		strcpy(dup, s);
-	}
-
-	return (dup);
-}
+#include "lists.h"
 
 /**
- * add_node - Adds a new node at the beginning.
- * @head: Pointer to the head of the linked list.
- * @str: String to store in the list.
+ * add_node - adds a new node at the beginning of a linked list
+ * @head: double pointer to the list_t list
+ * @str: new string to add in the node
  *
- * Return: Address of the head.
+ * Return: the address of the new element, or NULL if it fails
  */
 list_t *add_node(list_t **head, const char *str)
 {
-	list_t *new;
-	size_t nchar;
+    list_t *new;
+    unsigned int len = 0;
 
-	new = malloc(sizeof(list_t));
-	if (new == NULL)
-		return (NULL);
+    while (str[len])
+        len++;
 
-	new->str = my_strdup(str);
+    new = malloc(sizeof(list_t));
+    if (!new)
+        return (NULL);
 
-	for (nchar = 0; str[nchar]; nchar++)
-		;
+    new->str = strdup(str);
+    new->len = len;
+    new->next = (*head);
+    (*head) = new;
 
-	new->len = nchar;
-	new->next = *head;
-	*head = new;
-
-	return (*head);
+    return (*head);
 }
