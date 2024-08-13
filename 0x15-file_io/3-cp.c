@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <buffer.h>
+#include <buffer.c>
 
 
 char *create_buffer(char *file);
