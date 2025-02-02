@@ -1,41 +1,40 @@
 #include "search_algos.h"
-
 /**
- * linear_skip - Searches using linear skip.
- * @list: A pointer to the  head of the linked list to search.
- * @value: The value to search for.
- *
- * Return: NULL, a pointer to the first node where the value is located.
+ * jump_list - searches for a value in a sorted list
+ * of integers Jump search algorithm
+ * @list: is a pointer to the head of the list to search in
+ * @size: is the number of nodes in list
+ * @value: is the value to search for
+ * Return: NULL If value is not present
  */
-skiplist_t *linear_skip(skiplist_t *list, int value)
+listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	skiplist_t *node, *jump;
+	size_t i = 0, step = 0;
+	listint_t *before, *head;
 
-	if (!list)
+	if (list == NULL || size == 0)
 		return (NULL);
 
-	for (node = jump = list; jump->next && jump->n < value;)
+	step = sqrt(size);
+	before = head = list;
+	while (head->index < size - 1 && head->n < value)
 	{
-		node = jump;
-		if (jump->express)
+		before = head;
+		for (i += step; head->index < i; head = head->next)
 		{
-			jump = jump->express;
-			printf("Value checked at index [%ld] = [%d]\n",
-					jump->index, jump->n);
+			if (head->index == size - 1)
+				break;
 		}
-		else
-		{
-			while (jump->next)
-				jump = jump->next;
-		}
+		printf("Value checked at index [%ld] = [%d]\n", head->index, head->n);
 	}
-
 	printf("Value found between indexes [%ld] and [%ld]\n",
-			node->index, jump->index);
+	       before->index, head->index);
 
-	for (; node->index < jump->index && node->n < value; node = node->next)
-		printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
-	printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
+	for (; before->index < head->index && before->n < value;
+	     before = before->next)
+		printf("Value checked at index [%ld] = [%d]\n",
+		       before->index, before->n);
+	printf("Value checked at index [%ld] = [%d]\n", before->index, before->n);
 
-	return (node->n == value ? node : NULL);
+	return (before->n == value ? before : NULL);
 }
